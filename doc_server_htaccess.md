@@ -3,6 +3,10 @@
 # .htaccess File #
 *This topic applies to the BackEnd framework.*
 
+EXC uses an [.htaccess](https://httpd.apache.org/docs/2.4/howto/htaccess.html) file under APACHE to add some rewrite rules and add some security options.
+
+The following is an explanation of options recommended for your `.htaccess`.
+
 ## Security entries ##
 
 ```
@@ -11,8 +15,22 @@ Options -Indexes
 
 Disable directory listing
 
+## Lock down files ##
+```
+<files app.php>
+	order allow,deny
+	deny from all
+</files>
+<files controller.*.php>
+	order allow,deny
+	deny from all
+</files>
+```
 
-# Rewrite Rules #
+Disable access to special files, request for these files will get a HTTP 403 Forbidden error.
+
+
+## Rewrite Rules ##
 
 The rules for short-hand urls included in the `.htaccess` are mainly for scenarios where you have one instance of EXC that is acting as an application server. In a more typical setting of stand-alone applications these rule may not be considered that much useful, but we urge users to keep them on their deployments.
 
@@ -43,12 +61,20 @@ This rule adds what we call a [controller](./doc_server_controllers.md) URL. A c
 
 `/myapp/c/main` or `/myapp/c/main.loadRecord`
 
-In the example above the part after `/c/` is what we call the controller segment. It tells EXC that you are invoking a given action in your controller. In the first example the controller is `main` and it does not specify an action. The second example also calls the controller `main` but it specifies the action `loadRecord`.
+In the example above the part after `/c/` is what we call the controller segment. It tells EXC that you are invoking a given action in your controller. In the first example the controller is `main` and it does not specify an action. The second example also calls the controller `main` but it specifies the action `loadRecord`. A controller url is send to `/exc/loader.php` to dispatch the request.
 
-A controller url is send to `/exc/loader.php` to dispatch the request.
-
-In this particular rule we have to ensure that we have a correct path to `exc/loader.php` depending on your setup. As provided in this example it would look for the folder `exc` in the same folder that you have your `.htaccess` file.
+In this rule we have to ensure that we have a correct path to `exc/loader.php` depending on your setup. As provided in this example it would look for the folder `exc` in the same folder that you have your `.htaccess` file.
 
 In a setup where EXC is a shared instance we may want to place this rewrite rule in a `.htaccess` on the same folder where you put the shared instance of `exc`. This will allow for some handy urls, for example lets say we put our `exc` folder to be shared in the folder `apps` of our document root, then we can do:
 
-`https://mydomain/apps/myapp/o/main.start`
+`https://mydomain/apps/myapp/c/main.start`
+
+
+# Optional entries #
+
+```
+RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?example.com [NC,OR]
+RewriteRule \.(jpeg|JPEG|jpe|JPE|jpg|JPG|gif|GIF|png|PNG|mng|MNG|svg|SVG)$ - [F]
+```
+
+Prevent image hot linking, explained [here](https://help.dreamhost.com/hc/en-us/articles/216363197-How-do-I-prevent-image-hotlinking-).

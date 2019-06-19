@@ -51,25 +51,20 @@ Create a file named `.htaccess` in your app folder with the following contents:
 ```
 RewriteEngine On
 
-RewriteRule  ^((?:[^\/]*/)*)(c\/)((?:[^\/]*\/)*)([A-Za-z0-9-_]+\.[A-Za-z0-9-_]+|[A-Za-z0-9-_]+)$  exc/loader.php [L,QSA]
-RewriteRule  ^((?:[^\/]*/)*)(o\/)((?:[^\/]*\/)*)([A-Za-z0-9-_]+\.[a-z]{2,3})$  exc/loader.php [L,QSA]
+RewriteRule  ^((?:[^\/]*/)*)(c\/)([A-Za-z0-9-_]+\.[A-Za-z0-9-_]+|[A-Za-z0-9-_]+)$  exc/loader.php [L,QSA]
 RewriteRule  ^((?:[^\/]*/)*)(a\/)([A-Za-z0-9-_\.]+\.js)$  $1/assets/js/$3 [L,QSA]
 RewriteRule  ^((?:[^\/]*/)*)(a\/)([A-Za-z0-9-_\.]+\.css)$  $1/assets/css/$3 [L,QSA]
 RewriteRule  ^((?:[^\/]*/)*)(a\/)((?:[^\/]*\/)*)([A-Za-z0-9-_\.]+\.[a-z]{2,3})$  $1/assets/$3$4 [L,QSA]
 RewriteRule  ^((?:[^\/]*/)*)(a\/)([A-Za-z0-9-_\.]+\.[a-z]{2,3})$  $1/assets/$3 [L,QSA]
 ```
 
+Well thats pretty much minimum required to get EXC running. Next is working in your app.
 
+## Setting your app scaffolding ##
 
-These rules allows you to use urls like:
-| Short hand | Equivalent path |
-| -- | -- |
-| /my/path/a/script.js | /my/path/assets/js/script.js |
-| /my/path/a/style.css | /my/path/assets/css/style.css |
-| /my/path/a/myfolder/afile.css | /my/path/assets/myfolder/afile.css |
+The first file you need in your folder is an `app.php` file.  The `app.php` tells EXC about your app.
 
-
-Every app needs an `app.php` file which tells EXC about your app. Inside `app.php` we use the `$options` array to configure our app.
+Inside `app.php` we use the `$options` array to configure our app.
 
 ```php
 <?php
@@ -81,6 +76,7 @@ $options['controllers']=[
 	"record" => "./controller.record.php",
 	"findEmployeeController" => "./controller.findEmployee.php",
 ];
-
 ?>
 ```
+
+To learn everything about configuring your app read the documentation on [how to configure your app](./doc_server_config.md).
