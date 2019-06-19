@@ -58,6 +58,10 @@ RewriteRule  ^((?:[^\/]*/)*)(a\/)((?:[^\/]*\/)*)([A-Za-z0-9-_\.]+\.[a-z]{2,3})$ 
 RewriteRule  ^((?:[^\/]*/)*)(a\/)([A-Za-z0-9-_\.]+\.[a-z]{2,3})$  $1/assets/$3 [L,QSA]
 ```
 
+Now we need to install the front-end framework. Download the `exc_core` code from our [git-hub repository](https://github.com/ctkjose/exc_core/). Copy the contents of the `exc` folder to your app folder.
+
+
+
 Well thats pretty much minimum required to get EXC running. Next is working in your app.
 
 ## Setting your app scaffolding ##
