@@ -43,17 +43,23 @@ Download the `exc_server` code from our [git-hub repository](https://github.com/
 > : Depending were you place the framework you may need to change the references to css and js files from your html. We will discuss this in more detail later.
 
 
-
 The back-end framework uses an [.htaccess](https://httpd.apache.org/docs/2.4/howto/htaccess.html) file to add a some [rewrite](https://httpd.apache.org/docs/2.4/rewrite/intro.html) rules.
 
+> ? **MORE:** Read the [documentation](./doc_server_htaccess.md) for more details about `.htaccess` and rewrite rules in EXC.
 
-To provide short hands URLS for assets in your application we add the following rewrite rules to your `.htaccess` file:
+Create a file named `.htaccess` in your app folder with the following contents:
 ```
+RewriteEngine On
+
+RewriteRule  ^((?:[^\/]*/)*)(c\/)((?:[^\/]*\/)*)([A-Za-z0-9-_]+\.[A-Za-z0-9-_]+|[A-Za-z0-9-_]+)$  exc/loader.php [L,QSA]
+RewriteRule  ^((?:[^\/]*/)*)(o\/)((?:[^\/]*\/)*)([A-Za-z0-9-_]+\.[a-z]{2,3})$  exc/loader.php [L,QSA]
 RewriteRule  ^((?:[^\/]*/)*)(a\/)([A-Za-z0-9-_\.]+\.js)$  $1/assets/js/$3 [L,QSA]
 RewriteRule  ^((?:[^\/]*/)*)(a\/)([A-Za-z0-9-_\.]+\.css)$  $1/assets/css/$3 [L,QSA]
 RewriteRule  ^((?:[^\/]*/)*)(a\/)((?:[^\/]*\/)*)([A-Za-z0-9-_\.]+\.[a-z]{2,3})$  $1/assets/$3$4 [L,QSA]
 RewriteRule  ^((?:[^\/]*/)*)(a\/)([A-Za-z0-9-_\.]+\.[a-z]{2,3})$  $1/assets/$3 [L,QSA]
 ```
+
+
 
 These rules allows you to use urls like:
 | Short hand | Equivalent path |

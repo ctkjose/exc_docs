@@ -1,7 +1,7 @@
 **EXC** | DEV | [Documentation](./doc_index.md) | Version 1.0<BR>
 
 # Server-side Controllers #
-*This topic applies to the Front-End framework.*
+*This topic applies to the BackEnd framework.*
 
 The bread and butter of the backend are controllers, they manage the lifecycle of your app.
 

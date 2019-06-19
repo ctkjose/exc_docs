@@ -33,4 +33,14 @@ This rules allows you to refeer to you assets folder just using `a/`, for exampl
 RewriteRule  ^((?:[^\/]*/)*)(c\/)((?:[^\/]*\/)*)([A-Za-z0-9-_]+\.[A-Za-z0-9-_]+|[A-Za-z0-9-_]+)$  exc/loader.php [L,QSA]
 ```
 
-This rule adds what we call a controller URL.
+This rule adds what we call a [controller](./doc_server_controllers.md) URL. A controller url look like this:
+
+`/myapp/o/main` or `/myapp/o/main.loadRecord`
+
+In the example above the part after `/o/` is what we call the controller segment. It tells EXC that you are invoking a given action in your controller. In the first example the controller is `main` and it does not specify an action. The second example also calls the controller `main` but it specifies the action `loadRecord`.
+
+In this particular rule we have to ensure that we have a correct path to `exc/loader.php` depending on your setup. As provided in this example it would look for the folder `exc` in the same folder that you have your `.htaccess` file.
+
+In a setup where EXC is a shared instance we may want to place this rewrite rule in a `.htaccess` on the same folder where you put the shared instance of `exc`. This will allow for some handy urls, for example lets say we put our `exc` folder to be shared in the folder `apps` of our document root, then we can do:
+
+`https://mydomain/apps/myapp/o/main.start`

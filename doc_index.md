@@ -8,12 +8,23 @@ Creating web apps with EXC is meant to be simple, something that you can pickup 
 
 EXC combines a client-side JavaScript framework with a backend framework in PHP, both loosely couple yet fully integrated.
 
+## Our goals are: ##
+
+To reduce and simplify the components that you have to code to make a web application.
+
+To keep the learning curve low.
+
+To reduce the security and operational complexity of deploying an application.
+
+To leverage robust architectures and environments. To be able to deploy your app with common hosting companies (even vhosts), and use technologies like apache, and nginx, that are well documented, easy to scale and extremely cost-effective.    
+
 > : This documentation is in its early stages. Things are thrown together in a haphazard way, Sorry!.
 
 ## Topics ##
 
 [START-TOPICS]
 [Getting Started]
+[-] [Install and setup](./doc_app_structure.md)<BR> How to install EXC and setup an application.
 [-] [Configuring your app](./doc_server_config.md)<BR> How to start and configure an app.
 [-] [Building the UI](./doc_server_ui_views.md)<BR> Basics of building your UI.
 [-] [Working with views](./doc_client_view.md)<BR> How to use views in your app.
