@@ -35,7 +35,7 @@ The framework comes in two parts the [front-end](https://github.com/ctkjose/exc_
 
 You can deploy the framework inside you app folder.  
 
-> In a bit more advance setup we suggest you place it directly on your [DOCUMENT-ROOT](http://httpd.apache.org/docs/2.4/mod/core.html#documentroot) that way you it is installed once and share it with other apps.
+> In a bit more advance setup we suggest you place it directly on your [DOCUMENT-ROOT](http://httpd.apache.org/docs/2.4/mod/core.html#documentroot) that way it is installed once and share it with other apps.
 
 Download the `exc_server` code from our [git-hub repository](https://github.com/ctkjose/exc_server/). Copy the `exc` folder to your app folder.
 
