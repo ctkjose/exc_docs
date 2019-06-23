@@ -13,10 +13,6 @@ The front-end framework is build to handle your UI, the user interactions and na
 
 The back-end is the facilitator of your front-end, is the grunt doing anything needed, but mainly is our place where we keep the sensitive logic secure.
 
-In other frameworks the interaction of your front-end and back-end is glued by web-services. You use web-services to get data, add and update records, etc. Building good and secure web-services is not a simple task and is very common to find a web app exposing all our their data and actions with poorly design web-services.
-
-The difference in EXC is that our back-end is an actual API of controllers and functions that works seamlessly and transparently with your front-end without the need of scaffolding a whole set of web-services just for your application. In the back-end you can leverage the versatility of PHP to access databases, connect to web-services or integrate with other systems as needed.
-
 # Setting up the environment #
 
 An EXC app can be deployed in different ways but the easiest is to serve your applications using APACHE or NGINX.
@@ -33,19 +29,13 @@ Like when hosting a traditional web-page, your app is serve by APACHE or NGINX. 
 
 The framework comes in two parts the [front-end](https://github.com/ctkjose/exc_core/) and the [back-end](https://github.com/ctkjose/exc_server/), the relevant code for each of part is inside a folder called `exc`. Installing the framework is basically copying the code to your server.
 
-You can deploy the framework inside you app folder.  
-
-> In a bit more advance setup we suggest you place it directly on your [DOCUMENT-ROOT](http://httpd.apache.org/docs/2.4/mod/core.html#documentroot) that way it is installed once and share it with other apps.
+We will install the framework inside you app folder.  
 
 Download the `exc_server` code from our [git-hub repository](https://github.com/ctkjose/exc_server/). Copy the `exc` folder to your app folder.
 
-
-> : Depending were you place the framework you may need to change the references to css and js files from your html. We will discuss this in more detail later.
-
-
 The back-end framework uses an [.htaccess](https://httpd.apache.org/docs/2.4/howto/htaccess.html) file to add a some [rewrite](https://httpd.apache.org/docs/2.4/rewrite/intro.html) rules.
 
-> ? **MORE:** Read the [documentation](./doc_server_htaccess.md) for more details about `.htaccess` and rewrite rules in EXC.
+
 
 Create a file named `.htaccess` in your app folder with the following contents:
 ```
@@ -58,9 +48,11 @@ RewriteRule  ^((?:[^\/]*/)*)(a\/)((?:[^\/]*\/)*)([A-Za-z0-9-_\.]+\.[a-z]{2,3})$ 
 RewriteRule  ^((?:[^\/]*/)*)(a\/)([A-Za-z0-9-_\.]+\.[a-z]{2,3})$  $1/assets/$3 [L,QSA]
 ```
 
+Setting up your `.htaccess` is cover with more details [here](./doc_server_htaccess.md). For now lets just limit our selves to know that we use a rewrite rule to check for a special URL pointing to a [controller](./doc_server_controllers.md) to launch `load.php` script to handle the request.
+
 Now we need to install the front-end framework. Download the `exc_core` code from our [git-hub repository](https://github.com/ctkjose/exc_core/). Copy the contents of the `exc` folder to your app folder.
 
-
+> : Later when you work with your [UI](./doc_server_ui_views.md) is important to remember that depending on what template you are using you need to ensure that url and paths making a reference to the exc code (eg: javascript or css files) use a relative path from your app folder. For example "./js/exc.js".
 
 Well thats pretty much minimum required to get EXC running. Next is working in your app.
 

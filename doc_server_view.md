@@ -2,7 +2,7 @@
 
 ## Views ##
 *This topic applies to the BackEnd framework.*<BR>
-**File:** /server/exc.ui.views.php<BR>
+**File:** /server/excviews.php<BR>
 
 
 A view is used to build your user interface. In EXC we can manipulate views from the server side prior to serving the content to the browser or dynamically in the front-end.
@@ -126,9 +126,16 @@ $options['views.paths'] = [
 ];
 ```
 
-# Class exc\ui\views\view #
+# Class exc\view #
 
 ### Class Methods ###
+
+```
+public static function load($name='default')
+```
+
+Factory method to create an instance of `view` by name.
+
 ```
 public static function createWithFile($path, $name='default')
 ```
@@ -140,6 +147,11 @@ public static function createWithSource($source, $name='default')
 ```
 Factory method to create an instance of `view` from a $source string containing HTML.
 
+```
+public static function getViewPathForName($name)
+```
+
+Returns a string with the absolute path for a view file given its name. Returns
 
 ```
 public static function constantSetValue($key, $value)

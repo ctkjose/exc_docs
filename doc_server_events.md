@@ -38,6 +38,7 @@ The following is a list of events broadcasted by the `appController`.
 | -- | -- |
 | appInit | A request with your application is about to start. Initialize things required for your app to run. Arguments: None. |
 | appStart | An application instance must be created. Here you build a landing page. No application state is currently running or the session expired. Arguments: $app. |
+| willDispatchAction | EXC will dispatch a controller action. You may change the action to execute by returning a string with a different action name. Signature: `function($action)` |
 | requestStart | The backend is going to handle a request. Arguments: None. |
 | requestEnd | The backend finished a request and the app instance will be terminated. Arguments: None. |
 | requestAbort | The backend is aborting a request and the app instance will be terminated. Arguments: None. |

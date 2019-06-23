@@ -27,28 +27,42 @@ $options['controllers']=[
 ```
 
 
-## MANIFEST Option ##
+## VIEW.COPY Option ##
 
-The `manifest` is EXC's jargon for the list of items like javascript files, css and others that is included in your frontend.
+In `view.copy` you can specify a list of javascript files, css and others that you want included in a given view.
+
+The format of this option is:
+```js
+	$options['view.copy'] = [
+		['*'] => [
+			["type"=>"js", "url"=>'app://assets/js/tests.js'], //global code
+		]
+	];
+```
+The `view.copy` is a **scoped** key meaning that you specify entries that apply to a given action of for every action. In the above example we use the wildcard scope `*` to always add these items regardless of the action.
+```js
+	$options['view.copy'] = [
+		['*'] => [
+			["type"=>"js", "url"=>'app://assets/js/tests.js'], //global code
+		],
+		['app.showprofile'] => [
+			["type"=>"js", "url"=>'app://assets/js/profile.js'], //global code
+		],
+	];
+```
+In this example we added the scope `'app.showprofile'`, the items under this entry will be included only for this particular action.
+
 
 The option key `manifest` is were you specify these resources. This key is an `array` with one entry for each resource.
 
-```js
-//files to include in the application manifest
-$options['manifest'] = [
-	["url"=>'app://assets/js/tests.js'], //global code
-	["url"=>'app://assets/js/lib1.js', 'type'=>'export', 'name'=>'mylib'], //an export of a CommonJS Module
-];
-```
+
 
 Each entry is a `hash` with the following keys.
 
 | Key | Description |
 | -- | -- |
 | url | **Required**: A string with the url of the resource.You may use EXC special URL protocols. |
-| type | Optional: A string that specify a special handling for the resource. A `type` of `"export"` indicates that this is a javascript file to be handled as a CommonJS Module. A `type` of `"script"` indicates that this is a javascript file that must be executed on the global scope. |
-| name | Optional: when `type` is `"export"`, this field has the name of the global variable where a CommonJS module will be available. |
-| wait | Optional: A boolean that indicates if a resource is loaded synchronously. This is used to ensure scripts are loaded in a given order. Default value is "true". |
+| type | A string that specify a special handling for the resource. Valid values are: 'js', 'css' |
 
 
 ## USING Option ##

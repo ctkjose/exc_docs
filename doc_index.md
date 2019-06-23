@@ -50,5 +50,6 @@ To leverage robust architectures and environments. To be able to deploy your app
 [-] [Events and Messages](./doc_server_events.md)<BR> Understanding events and using event handlers.
 [-] [Views](./doc_server_view.md)<BR> Creating views for pages, html fragments and components.
 [-] [Database](./doc_server_db.md)<BR> Using a database and managed connections.
+[-] [.htaccess](./doc_server_htaccess.md)<BR> Configuring APACHE `.htaccess` file.
 [-] [Core Classes and Traits](./doc_server_core.md)<BR> Useful functionality provided by the core classes and traits.
 [END-TOPICS]

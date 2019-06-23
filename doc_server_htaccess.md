@@ -69,6 +69,14 @@ In a setup where EXC is a shared instance we may want to place this rewrite rule
 
 `https://mydomain/apps/myapp/c/main.start`
 
+## JWT Support ##
+
+```
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+```
+
+Enable JWT support by copying any Authorization header to an environment variable.
+
 
 # Optional entries #
 
