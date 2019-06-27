@@ -39,7 +39,7 @@ The format of this option is:
 		]
 	];
 ```
-The `view.copy` is a **scoped** key meaning that you specify entries that apply to a given action of for every action. In the above example we use the wildcard scope `*` to always add these items regardless of the action.
+The `view.copy` is a **scoped** key meaning that you specify entries that apply to a given action of for every action. In the above example we use the wildcard scope `"*"` to always add these items regardless of the action.
 ```js
 	$options['view.copy'] = [
 		['*'] => [
@@ -51,11 +51,6 @@ The `view.copy` is a **scoped** key meaning that you specify entries that apply 
 	];
 ```
 In this example we added the scope `'app.showprofile'`, the items under this entry will be included only for this particular action.
-
-
-The option key `manifest` is were you specify these resources. This key is an `array` with one entry for each resource.
-
-
 
 Each entry is a `hash` with the following keys.
 
