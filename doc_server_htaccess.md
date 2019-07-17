@@ -1,7 +1,18 @@
 **EXC** | DEV | [Documentation](./doc_index.md) | Version 1.0<BR>
 
+# Protecting your php code #
+
+It is a good idea to isolate your code so that only the absolute minimum is reachable via traditional http.
+
+In EXC we recommend that you place your code in a folder named `src`. To protect this folder you just need to add a [.htaccess](https://httpd.apache.org/docs/2.4/howto/htaccess.html) file with the following line:
+
+```
+deny from all
+```
+
+This prevent users to make direct http request to your files.
+
 # .htaccess File #
-*This topic applies to the BackEnd framework.*
 
 EXC uses an [.htaccess](https://httpd.apache.org/docs/2.4/howto/htaccess.html) file under APACHE to add some rewrite rules and add some security options.
 

@@ -8,7 +8,7 @@
 
 The stage is what we call the layout where we display your UI. A stage is made of multiple views through which the user navigates.
 
-The object `exc.stage` is how we manage the stage. The stage handles the basic navigation between your views.
+The object `exc.stage` provides the functionality to manage the views and handle the basic navigation between your views. 
 
 ## Showing a View ##
 

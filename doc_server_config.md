@@ -3,15 +3,73 @@
 # Backend Application Configuration #
 *This topic applies to the BackEnd framework.*
 
-The file `app.php` is where we tell EXC about our application and configure it.
+Configuration options are provided in the **config** massage of your [appController](./doc_server_appcontroller.md).
 
-Place this file in the root folder of your application, for example:
-```
-  + /MyApp
-    -  app.php
+```php
+<?php
+class appController extends \exc\controller\appController {
+	public function config(){
+		//place configuration options here
+		$options = [];
+		...
+		return $options;
+	}
+}
 ```
 
-Inside your `app.php` we use the global variable `$options` to configure an application.
+The `config()` function returns an array with the configuration options that you want to set. This array has keys for configuration directives, in essence an array of key-value pairs.
+
+## Adding your own configuration keys ##
+
+Besides the configuration options defined by EXC, you can also use the `$options` array to add your own configuration keys. For example:
+```php
+<?php
+class appController extends \exc\controller\appController {
+	public function config(){
+		//place configuration options here
+		$options = [];
+		$options["templateName"] = "summer2019"; //a user configuration
+		return $options;
+	}
+}
+```
+
+To read the value of your key you use the following:
+```php
+<?php
+//get the value of a key
+$cfgTemplateName = \exc\options::key("/app/templateName");
+
+```
+
+
+## Route Option ##
+
+The **route** allows to set configuration option for a particular action.
+
+For example let say we have an action "employee.showRecord" (that is the action "showRecord" of your "employeeController"), then we can add configurations options that apply only for that particular action.
+
+Lets see the example:
+
+```php
+<?php
+class appController extends \exc\controller\appController {
+	public function config(){
+		//place configuration options here
+		$options = [];
+		$options['route'] = [
+			'employee.showRecord' => [  //options for this action
+				'view.copy'=> [ //add files to the view output
+					['type'=>'js', "url"=>'app://assets/js/tests.js'], //insert js file into the view
+				]
+			]
+		]
+		return $options;
+	}
+}
+```
+
+In this example we added a `view.copy` configuration directive to the "employee.showRecord" action. That `view.copy` directive will only apply when that action is executed. In EXC we call that a scoped configuration.
 
 
 ## CONTROLLERS Option ##
@@ -26,6 +84,7 @@ $options['controllers']=[
 ];
 ```
 
+> * TIP: You may also use the **controllers** directive inside your **route** options.
 
 ## VIEW.COPY Option ##
 
@@ -60,15 +119,15 @@ Each entry is a `hash` with the following keys.
 | type | A string that specify a special handling for the resource. Valid values are: 'js', 'css' |
 
 
-## USING Option ##
+## USE Option ##
 
-The option key `using` is where we add libraries and modules for your backend.
+The option key `use` is where we add libraries and modules for your backend.
 
-Each entry in `$options['using']` points to a resource that you want to load. For example lets load the library `exc.storage.db`:
+Each entry in `$options['use']` points to a resource that you want to load. For example lets load the library `exc.storage.db`:
 
 ```js
-$options['using'] = [   //which modules to load
-	"exc://exc.storage.db"=>[
+$options['use'] = [   //which modules to load
+	"exc://storage.db"=>[
 		"connections"=>[
 			"test1" => ["driver"=>"mysql", "host"=>"192.168.100.175", "port"=>3306, "dbname"=>"testdb", "username"=>"user","password"=>"apass"]
 		]
@@ -76,15 +135,7 @@ $options['using'] = [   //which modules to load
 ]
 ```
 
-An entry (in our example `"exc://exc.storage.db"` )  points to an array of optional parameters/configurations passed to the library.
-
-To tell **EXC** where to look for a resource we use URL protocols. **EXC** supports the following special URLs:
-
- | Protocol | Description |
- | -- | -- |
- | `exc://` | A standard EXC module, located in `\exc\`. |
- | `app://` | An app specific module, located in your app folder. |
- | `file://` | A php include, the path relative to document root must be provided. |
+An entry (in our example `"exc://storage.db"` )  points to an array of optional parameters/configurations passed to the library.
 
 #### Example loading an app library ####
 
@@ -92,7 +143,7 @@ Lets load the class `\emr\record` from the file `emr.record.php` located in our 
 
 ```php
 <?php
-$options['using'] = [
+$options['use'] = [
 	//example of a module in the app domain
     "app://emr.record" => [  //an app-specific module, "emr.record" is the namespace "\emr" and maps to the class "\emr\record"
         //exc will attempt to execute the static method initialize() from the class or from a class named manager if one is found.
@@ -110,7 +161,7 @@ Paths are relative to your document root.
 
 ```php
 <?php
-$options['using'] = [
+$options['use'] = [
     "file://myapp/lib/myinclude.php" => [],
 ];
 ```
@@ -119,7 +170,7 @@ Since in this example the file is under your app folder you could also use the f
 
 ```php
 <?php
-$options['using'] = [
+$options['use'] = [
     "app://lib/myinclude.php" => [],
 ];
 ```
@@ -130,7 +181,7 @@ Lets load composer support for our app.
 
 ```php
 <?php
-$options['using'] = [
+$options['use'] = [
     "app://vendor/autoload.php"=>[],
 ];
 ```

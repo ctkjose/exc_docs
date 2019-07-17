@@ -13,6 +13,7 @@ The client object allows your backend to interact with your application's frond-
 ```
 
 Data received from a client is available using the `$client->values` property. The `values` property is an array of key value pairs.
+
 ```PHP
 <?php
 $zipcode = $client->values['zipcode'];
@@ -21,12 +22,18 @@ $zipcode = $client->values['zipcode'];
 
 # Interactions with your front-end #
 
+You can use the `$client` to make common interactions with your client easily.
+
 ## Setting a shared session key ##
+
+A [shared session](./doc_session.md) is a set of key-value pairs that persists between request on the server side and are shared automatically with your front-end so you can use them in javascript.
 
 ```php
 <?php
 $client->session($key, $value);
 ```
+
+> ! For security reasons the server always overrides the session values on the client.
 
 ## Getting the value of a shared session key ##
 
@@ -50,6 +57,8 @@ $client->sessionRemove($key);
 ```
 
 ## Publish a message or event ##
+
+Similar to controllers on the backend, you can publish a message to your javascript controllers.
 
 ```php
 <?php
@@ -96,7 +105,7 @@ When the front-end sends a request that expects data back we use `$client->sendR
 
 ```php
 <?php
-class mainController extends \exc\controller\viewController {
+class appController extends \exc\controller\viewController {
 	public function onAction_ComputeRate(){
 		$client = \exc\client::instance();
 		$qty = $client->values['qty'];
@@ -110,7 +119,7 @@ class mainController extends \exc\controller\viewController {
 In our front-end we invoke our service using a backend action.
 ```js
 
-	var action = exc.backend.action("@(main.computeRate)"); //create a backend action
+	var action = exc.backend.action("@(app.computeRate)"); //create a backend action
 	action.params.qty = 2; //set a parameter
 
 	action.exec().then(function(data){
