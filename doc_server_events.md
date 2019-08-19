@@ -1,7 +1,9 @@
 **EXC** | DEV | [Documentation](./doc_index.md) | Version 1.0<BR>
 
 # Messages #
-*This topic applies to the BackEnd framework.*
+*This topic applies to the Back-End framework.*
+
+> Suggested readings: [controllers](./doc_server_controllers.md)
 
 EXC uses messages to decouple the logic of an application. The execution of your application is in essence your code responding to messages.
 
@@ -10,9 +12,16 @@ A message is send to indicate an **event** or to require an **action**. Messages
 Handling messages is done mainly by [controllers](./doc_server_controllers.md). The main job of a controller is to responde to **messages**. A message may be an **action** from your front-end or you may get an **event** from the framework itself. See "[Adding your own controllers](./doc_server_controllers.md)" to learn more about creating your own controllers.
 
 
+When a message is broadcasted to all active controllers is called **publishing a message**. In addition a controller maybe directed to **perform a message**.
+
+A controller my handle a message as the **first responder** or as a callback to an event message. 
+
+
 # Registering a handler for an event or action #
 
-In a controller a message handler is a function, who's name follows a simple naming convention (a message handler signature). A function name that starts with "on" , for example `onAppStart` is considered a handler for the message `"AppStart"`.
+In a controller a message handler is a function, who's name follows a simple naming convention that we call the "message handler signature".
+
+A function name that starts with "on" , for example `onAppStart` is considered a handler for the message `"AppStart"`.
 
 ```php
 <?php
@@ -23,7 +32,7 @@ class recordController extends \exc\controller\viewController {
 }
 ```
 
-Message handlers in your controller class are used when your controller class is loaded on request by EXC or explicitly by the user when calling `\exc\app::registerController($className, $classInstance)`.
+We use the prefix "on" to identify functions as message handlers that EXC will automatically register as a callback. These automatic message handlers in your controller class are used when your controller class is loaded on request or explicitly by the user when calling `\exc\app::registerController($className, $classInstance)`.
 
 We can also implement message handlers by registering a callback manually.
 ```php
@@ -33,15 +42,15 @@ $app = \exc\controller\appController::instance(); //get an instance of the app c
 $app->on( 'appStart', $callback ); //register for the event appStart
 ```
 
+
+
 # Backend Messages #
 
 The following is a list of events broadcasted by the `appController`.
 
 | Name | Type | Description |
 | -- | -- | -- |
-| willDispatchAction | message | EXC will dispatch a controller action. You may change the action to execute by returning a string with a different action name.<BR><BR>This message is send only to your `appController`.<BR><BR>Signature: `function($action)` <BR><BR>Arguments: `$action` string with name of action. |
-| canBecomeFirstResponder | message | EXC will delegate the role of first responder to a given controller.<BR><BR>This message is send only to your `appController`. Return false to deny the switch.<BR><BR>Signature: `function($controllerClassName, $controllerInstance)` |
-| appInit | event | Your application is about to run. Initialize things required for your app to run. <BR><BR>Arguments: None. |
+| appInit | publish | Your application is about to run. Initialize things required for your app to run. <BR><BR>Arguments: None. |
 | appEnd | event | The backend finished a request and the app instance will be terminated. Arguments: None. |
 | appAbort | event | The backend is aborting a request and the app instance will be terminated. Arguments: None. |
 | appClientReady | event | The `$client` was initialized and is ready for interactions. Arguments: `$client`. |

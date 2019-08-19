@@ -25,7 +25,7 @@ To leverage robust architectures and environments. To be able to deploy your app
 [START-TOPICS]
 [Getting Started]
 [-] [Install and setup](./doc_app_structure.md)<BR> How to install EXC and setup an application.
-[-] [Configuring your app](./doc_server_config.md)<BR> How to start and configure an app.
+[-] [Hello World!](./doc_getting_started.md)<BR> A simple tutorial to get you started.
 [-] [Building the UI](./doc_server_ui_views.md)<BR> Basics of building your UI.
 [-] [Working with views](./doc_client_view.md)<BR> How to use views in your app.
 [-] [Working with the stage](./doc_client_stage.md)<BR> How to control views and user navigation in your app with the stage.
@@ -40,6 +40,8 @@ To leverage robust architectures and environments. To be able to deploy your app
 [-] [Views](./doc_client_view.md)<BR> How to use views in your app.
 [-] [Stage](./doc_client_stage.md)<BR> How to control views and user navigation in your app with the stage.
 [-] [HTTP and AJAX](./doc_core_ajax.md)<BR> Making HTTP requests and using ajax.
+[-] [Components](./fte_ref_components.md)<br> Using components and widgets.
+[-] [Expansions](./fte_ref_expansions.md)<br> Using magic attributes and other expansions.
 [-] [Value Observers, Data Source and JSON API](./doc_datasource.md)<BR>
 [END-TOPICS]
 
@@ -48,8 +50,12 @@ To leverage robust architectures and environments. To be able to deploy your app
 [Backend]
 [-] [Controllers](./doc_server_controllers.md)<BR> Creating and using controllers in your php code.
 [-] [Events and Messages](./doc_server_events.md)<BR> Understanding events and using event handlers.
+[-] [Configuration options](./doc_server_config.md)<BR> How to start and configure an app.
 [-] [Views](./doc_server_view.md)<BR> Creating views for pages, html fragments and components.
 [-] [Database](./doc_server_db.md)<BR> Using a database and managed connections.
 [-] [.htaccess](./doc_server_htaccess.md)<BR> Configuring APACHE `.htaccess` file.
 [-] [Core Classes and Traits](./doc_server_core.md)<BR> Useful functionality provided by the core classes and traits.
+[-] [Writing Extensions](./bke_ref_extensions.md)<BR> Creating and using extensions.
+[-] [Class APP](./bke_ref_app.md)<BR> App class.
+[-] [Class Controller](./bke_ref_controller.md)<BR> Controllers class.
 [END-TOPICS]

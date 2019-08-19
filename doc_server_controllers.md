@@ -36,30 +36,37 @@ The name of the class always ends with the suffix `"Controller"`. In the above e
 We put our controller class in a file with a name that follows this convention `controller.name.php`, for example: `controller.record.php`. The name of the file is important to allow EXC to find your controller.
 
 
-## Handling messages ##
+# Messages #
 
 In EXC the app logic is orchestrated by means of [messages](./doc_server_events.md). The main job of a controller is to handle a given message or broadcast a message.
 
-A message handler is a public function in a controller. Messages are explained in detail [here](./doc_server_events.md).
+A particular message is identified by its name and the number of arguments it sends to a handler, that combination of name and parameters is the **message signature**.
 
-> * In your application the `appController` is responsible for broadcasting messages. Since all controllers are [event emitters](./doc_server_events.md) you can use them to create your own message based logic which is great to decouple applications.
+When a message is broadcasted to all active controllers this is called **publishing a message**. In addition a controller maybe directed to execute a message or **perform a message**.
 
-In a controller a message handler is a function, who's name follows a simple naming convention (a message handler signature).
+A message handler is a public function in a controller with a name and parameters that match a **message signature**. Messages are explained in detail [here](./doc_server_events.md).
 
-A function name that starts with **"on"** , for example `onAppStart` is considered a handler for the message `"AppStart"`.
+For **published messages** a handler function has a name that starts with **"on"** , for example `onAppInit` is considered a handler for the message `"AppInit"`. We use the prefix "on" to identify functions as message handlers that EXC will automatically register.
 
 ```php
 <?php
 class recordController extends \exc\controller\viewController {
-	public function onAppStart(){
+	public function onAppInit(){
 		//my code here...
 	}
 }
 ```
 
+> * TIP: In your application the `appController` is responsible for broadcasting messages. Since all controllers are [event emitters](./doc_server_events.md) you can use them to create your own message based logic which is great to decouple applications.
+
+
+## Action messages ##
+
 When interacting with the browser we use **action messages**. In EXC the concept of an **action** represents a request or interaction with your front-end running in your browser or an API call.
 
-For example if a link to show a record will use the action "showRecord" then we implement the message handler as follows:
+For example lets use an action named "showRecord" in a link, the link will become "./myapp/index.php?a=showRecord", in this link the `a` argument has the value of our action.
+
+We can implement the message handler for our "showRecord" action as follows:
 
 ```php
 <?php
@@ -70,7 +77,7 @@ class recordController extends \exc\controller\viewController {
 }
 ```
 
-An **action message** is just like any other message, except that message name starts with "action_".
+You can see that an **action message** is just another message, except that message name starts with "action_".
 
 To get any form values (POST/GET) send by the browser we use the [client](./doc_server_client.md). For example:
 
@@ -83,6 +90,24 @@ class recordController extends \exc\controller\viewController {
 	}
 }
 ```
+
+## More on message handling functions ##
+
+We learned that there are two ways to receive a message: a message may be broadcasted to all active controllers, this is called **publishing a message**; or a controller maybe directed to **perform a message**.
+
+Publishing messages is a more generic approach to decoupling an application logics while having a controller perform a particular message is more specific to its job.
+
+To understand the difference of **publish** and **perform** we need to talk about controller roles. Controllers may have a particular job or role in your application. When a controller has a particular role or job we call it a **delegate** controller.
+
+For example a controller like `appController` has a specific job **"to be your application controller"** as such EXC can make some assumptions about its use.
+
+The other particular job or role that is important for this topic is the **first responder**. When your back-end is handling a request that request is process by your **first responder**. By default your `appController` assumes the duties of a first responder, but any controller may become the first responder.
+
+In many instances EXC will directly tell a delegate controller to **perform a message**. In which case that message CAN NOT be handle by any other controller, only the one getting the message can handle it.
+
+> * All controller implement the trait `objectExtendable` which allows you to delegate particular messages to other objects or functions. See [Core](./doc_server_core.md) for more information.
+
+In most cases the message is **published** which means that any registered controller may implement a message handler using a `on...()` function.
 
 ## Loading a controller ##
 
@@ -132,8 +157,8 @@ Every controller inherits from the class `\exc\core\controller` and `\exc\core\b
 | `$controller->on($eventName, $callbackMethod, $cookie)` | Register a callback for a given event. |
 | `$controller->publish($eventName, $paramsArray)` | Publishes an event. |
 | `$controller->off($eventName, $callbackMethod)` | Removes a callback. |
-
 | `\exc\core\controller::isControllerInstance($object)` | Returns true if the `$object` is a controller instance. |
+
 | `\exc\core\controller::registerHandlers($targetController, $handlerObject);` | Register callbacks on the `$targetController` for each function on `$handlerObject` that its name matches the event handler signature. |
 
 
@@ -143,7 +168,6 @@ Every controller inherits from the class `\exc\core\controller` and `\exc\core\b
 # Class viewController #
 
 A `viewController` is a specialized controller for use in an application where we create and build an interactive UI.
-
 
 | Instance Methods | Description |
 | -- | -- |
