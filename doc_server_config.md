@@ -3,7 +3,7 @@
 # Backend Application Configuration #
 *This topic applies to the BackEnd framework.*
 
-Configuration options are provided in the **config** massage of your [appController](./doc_server_appcontroller.md).
+Configuration options are provided in the **config** massage of your [appController](./bke_ref_appcontroller.md).
 
 ```php
 <?php

@@ -43,7 +43,7 @@ The code `\exc\bootloader::run();` is what starts EXC and runs your application.
 
 ## The application controller ##
 
-Once EXC starts the lifecycle of your app is managed by the [Application Controller](./doc_server_appcontroller.md). The application controller is explained in more detail [here](./doc_server_appcontroller.md).
+Once EXC starts the lifecycle of your app is managed by the [Application Controller](./bke_ref_appcontroller.md). The application controller is explained in more detail [here](./bke_ref_appcontroller.md).
 
 Lets create a file `controller.app.php` and place in your `src` folder. In this file we will add our `appController` class like this one:
 

@@ -6,7 +6,7 @@ The bread and butter of the backend are controllers, we use controllers to imple
 
 There are different types of controllers each with additional functionality depending on your type of application or tasks. You will create instances of these controllers to implement your app.
 
-The main controller is the [appController](./doc_server_appcontroller.md) that manages the application lifecycle. Every application has an instance of an `appController`.
+The main controller is the [appController](./bke_ref_appcontroller.md) that manages the application lifecycle. Every application has an instance of an `appController`.
 
 Additionally you may add instances of `viewController` for UI based applications and `processController` for services and cli applications.
 
@@ -119,7 +119,7 @@ The `appController` is always loaded automatically.
 
 EXC will look for your `appController` in a file named `controller.app.php` in your `src` folder or your application folder. You may also place the class in your startup php file or include it at some point before your start up file calls `\exc\bootloader::run()`.
 
-For more details about your `appController` read this [documentation](./doc_server_appcontroller.md).
+For more details about your `appController` read this [documentation](./bke_ref_appcontroller.md).
 
 ### Action Controllers ###
 
