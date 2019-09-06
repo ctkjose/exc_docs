@@ -59,6 +59,53 @@ The function `exc.component.get()` will return `undefined` if not found. If a se
 | prefix | Decorates a textbox with an icon or text at the beginning. |
 | suffix | Decorates a textbox with an icon or text at the end. |
 
+### Methods of textbox ###
+
+This component inherits methods from `generic`.
+
+| Function | Syntax | Description |
+| -- | -- | -- |
+| enable | `enabled()` |  |
+| disable | `disable()` |  |
+| focus | `focus()` |  |
+| setValue | `setValue(value)` | Sets the value. |
+| getValue | `getValue()` | Returns the value. |
+
+
+## Component Checkbox ##
+
+| Property | Description |
+| -- | -- |
+| type | **Required** Value is "check" |
+| name | **Required** A name for this widget. |
+| disabled | Make it disabled |
+| help | Help or Alt/Title  attribute of the textbox. |
+| label | The label for the checkbox |
+| default | The default value, either "1" or "0" |
+
+
+```html
+<w type="formRow">
+	<w type="formField" caption="Checkbox">
+		<w type="check" name="check1" label="Option 1" m-model="user_record"></w>
+		<w type="check" name="check2" m-model="user_record">Option 2</w>
+	</w>
+</w>
+```
+
+### Methods of checkbox ###
+
+This component inherits methods from `generic`.
+
+| Function | Syntax | Description |
+| -- | -- | -- |
+| enable | `enabled()` |  |
+| disable | `disable()` |  |
+| focus | `focus()` |  |
+| setValue | `setValue(value)` | Sets the value. Either 1 or 0. |
+| getValue | `getValue()` | Returns the value. Either 1 or 0. |
+| toggle | `toggle()` | Toggles the value. |
+
 ### Value Modifiers ###
 
 A textbox supports value modifiers to control the value returned by the widget.
@@ -144,17 +191,17 @@ exc.components.register({
 		//Build a widget node, from the widget properties passed on e
 
 		//basic things that should be done on build:
-		e.copyDefaultAttributes(t);
-		//exc.components.installValueInterface(t,"value", this); //sets a value interface
+		e.copyDefaultAttributes(node);
+
 
 		//return a single node or an array of nodes like [ node1, node2]
 		return node;
 	}
-	onInit: function(o){
+	onInit: function(node){
 		//Initialize the component's contents, called after a widget is built or a widget node is found
-
+		exc.components.installValueInterface(node,"value", this); //sets a value interface
 	}
-	onInstance: function(o){
+	onInstance: function(node){
 		//A widget reference is requested for the node (instance of this component).
 		//decorate or add special functionality, beyond what is defined in fn
 	}
