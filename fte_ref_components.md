@@ -1,21 +1,23 @@
 **EXC** | DEV | [Documentation](./doc_index.md) | Version 1.0<BR>
 
-# Components #
+# Components #  {: #components}
 
 In EXC components are used to provide an enhanced behavior to existing HTML controls and to create new controls and UI elements.
 
 EXC comes with a set of built-in components and you may create your own.
 
-## Adding a component to your HTML with a shorthand tag ##
+## Adding a component ## {: #adding}
 
 Use the html tag `<w></w>` as a shorthand to add a component to your html.
 
-The shorthand tag `<w>`  only requires two attributes, each component may require additional attributes.
+```html
+<w type="textbox" name="username"></w>
+```
 
-| Attribute | Description |
-| -- | -- |
-| type | **Required** A component type identifier. |
-| name | **Required** A name for this widget. |
+The shorthand tag `<w>`  requires a minimum of two attributes `type` and `name`, each component may require additional attributes.
+
+- `type` `string`(js:string) The component type identifier.
+- `name` `string`(http://apple.com) A unique name for the element.
 
 For example:
 ```html
@@ -27,7 +29,7 @@ Here is an alternate syntax using the attribute `def` with a JSON payload:
 <w def='{"type":"textbox", "name":"username", "default":"","attr":{"placeholder":"Username"}, "suffix":"<i class=\"la la-user\"></i>"}'></w>
 ```
 
-## Getting a reference to a component instance ##
+## Getting a reference to a component ##  {: #adding}
 
 In JS a component instance is nothing more than a HTML element decorated with additional functionality.
 
@@ -39,7 +41,7 @@ To obtain an instance we use the name of element:
 
 Actually in addition to the name you can pass an html element or a string with a selector to `exc.component.get()`.
 
-> * This function uses the attribute `w` to determine what kind of component is represented by an element. For some other cases the function `exc.component.get()` takes an optional second argument with the id of a component to be returned.
+> * This function uses the attribute `type` to determine what kind of component is represented by an element. For some other cases the function `exc.component.get()` takes an optional second argument with the id of a component to be returned.
 
 The function `exc.component.get()` will return `undefined` if not found. If a selector matches more than one element it will return the first matched element.
 

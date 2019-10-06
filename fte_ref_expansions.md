@@ -25,6 +25,9 @@ The value of this attribute could be on of the following actions:
 | Controller Function | `[controllerName.fnName]` | Executes the function `fnName` of the controller specified by `controllerName`.<br><br>For Example:<br><br> `m-click="[myEmpRecordController.checkRecord]"` |
 | Enable | `enable($componentName)` | Enables the component specified.<br><br>For Example:<br><br> `m-click="enable($fld_emp_salary)"` |
 | Disable | `disable($componentName)` | Enables the component specified. |
+| focus | `focus($componentName)` | Sets the focus to a specified component. |
+| toggle | `toggle(disable, $componentName)` | Toggles the disable state of a component. |
+| toggle | `toggle(.class, $componentName)` | Adds or removes a css class of a component. |
 
 ## Confirm ##
 
