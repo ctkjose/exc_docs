@@ -1,3 +1,9 @@
+[Core Classes]() {:menu}
+[app](./bke_ref_app.md) {:menu}
+[appController](./bke_ref_appcontroller.md) {:menu}
+[view](./bke_ref_view.md) {:menu}
+[controller](./bke_ref_controller.md) {:menu}
+
 **EXC** | DEV | [Documentation](./doc_index.md) | Version 1.0<BR>
 
 # App Controller #
@@ -114,6 +120,7 @@ Inherits from the class `\exc\core\controller` and `\exc\core\base`.
 | -- | -- |
 | `setOption(string $key, mixed $value)` | Sets an application option. |
 | `getDefaultView()` | Returns the view instance designated as default view. Returns null if the default view is not set. |
+| `setDefaultView(mixed $view)` | Sets the default view.<br>Parameters:<br>`$view` A string with the name of the view or an instance of a `view`. |
 | `client()` | Returns the `\exc\client` instance. |
 | `header(string $name, string $value)` | Sets an HTTP header. |
 | `end()` | Terminates the application execution. |

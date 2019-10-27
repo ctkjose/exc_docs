@@ -1,6 +1,10 @@
+[Core Classes]() {:menu}
+[app](./bke_ref_app.md) {:menu}
+[appController](./bke_ref_appcontroller.md) {:menu}
+[view](./bke_ref_view.md) {:menu}
+[controller](./bke_ref_controller.md) {:menu}
+
 **EXC** | DEV | [Documentation](./doc_index.md) | Version 1.0<BR>
-
-
 
 # Class controller #
 

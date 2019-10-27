@@ -1,7 +1,11 @@
+[Related]() {: menu}
+[Stage](./doc_client_stage.md) {: menu}
+[Controller](./doc_client_controllers.md) {: menu}
+
 **EXC** | DEV | [Documentation](./doc_index.md) | Version 1.0<BR>
 
 
-# Views #
+# Views # {: #views }
 *This topic applies to the Front-End framework.*
 
 A view is a fragment of HTML like the following.
@@ -13,6 +17,7 @@ A view is a fragment of HTML like the following.
 </div>
 ```
 An alternate format is to use a JSON string with the view definition.
+
 ```html
 <div class="view" data-view='{"name":"myView", "controller":"myController", "type":"modal"}'>
 	<b>My View Contents</b>
@@ -27,13 +32,14 @@ When loading your app EXC will load the views it finds on your page. EXC will tr
 While a `view` may be just plain html, in EXC a `view` is where we place `components`.
 
 
-## The Stage ##
+## The Stage ## {: #stage }
 
 The [stage](./doc_client_stage.md) is where our views live. We use the `exc.stage` object to display our view.  Be sure to read the [stage](./doc_client_stage.md) documentation to lear more.
 
-## View controller ##
+## View controller ## {: #view_controller }
 
 You may have notice that our view's `<div>` have a `controller` attribute for example:
+
 ```HTML
 <div class="view" name="myView" data-controller="myController">
 ```

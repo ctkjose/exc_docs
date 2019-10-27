@@ -1,4 +1,6 @@
-**EXC** | DEV | [Documentation](./doc_index.md) | Version 1.0<BR>
+[Related](){:menu}
+[Back-end Framework](./bke_index.md){:menu}
+**EXC** | DEV | [Documentation](./doc_index.md)<BR>
 
 # Base Object #
 **Class:** exc\core\base<br>
@@ -51,9 +53,9 @@ The method `performMessage($messageName, $paramsArray)` allows you to safely exe
 | $messageName | A string with the name of the message or function name. |
 | $paramsArray | The parameters to be passed to the callback, as an indexed array. |
 
-If the object does not implements the function or the event handler the `unhandled($messageName, $paramsArray)` function will be executed giving you one last chance to handle it.
+If the object does not implements the function, then the `unhandled($messageName, $paramsArray)` function will be executed giving you one last chance to handle it.
 
-When calling `performMessage()` it will first look for a function that matches `$messageName`, if found it will be executed. Then it will look for a  event handler in the object that matches the name given in the parameter `$messageName`. Finally it will look for a `closure` function.
+When calling `performMessage()` it will first look for a function that matches `$messageName`, if found it will be executed. Then it will look for an event handler in the object that matches the name given in the parameter `$messageName`. Finally it will look for a `closure` function.
 
 Lets see an example of an event handler:
 

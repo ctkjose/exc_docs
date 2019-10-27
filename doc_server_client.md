@@ -1,9 +1,20 @@
-**EXC** | DEV | [Documentation](./doc_index.md) | Version 1.0<BR>
+[Related](){:menu}
+[Back-end Framework](./bke_index.md){:menu}
+[Session and data persistence](./doc_session.md){:menu}
+[Request](./bke_ref_request.md){:menu}
+**EXC** | DEV | [Documentation](./doc_index.md)<BR>
+
 
 # Interacting with the front-end #
 *This topic applies to the BackEnd framework.*
 
-## Client ##
+
+## Getting data ## {#gettingdata}
+
+Data and parameters received on a request are available using the [request](./bke_ref_request.md) object.
+
+
+## Client ## {#client}
 
 The client object allows your backend to interact with your application's frond-end running in the users browser.
 
@@ -12,51 +23,47 @@ The client object allows your backend to interact with your application's frond-
 	$client = \exc\client::instance();
 ```
 
-Data received from a client is available using the `$client->values` property. The `values` property is an array of key value pairs.
-
-```PHP
-<?php
-$zipcode = $client->values['zipcode'];
-```
-
-
 # Interactions with your front-end #
 
 You can use the `$client` to make common interactions with your client easily.
 
-## Setting a shared session key ##
+> Note: Most methods of `$client` are chainable. Examples here do not use chaining for sake of simplicity.
+
+## The shared session ## {#shrdsess}
 
 A [shared session](./doc_session.md) is a set of key-value pairs that persists between request on the server side and are shared automatically with your front-end so you can use them in javascript.
+
+> ! For security reasons the server always overrides the session values on the client.
+
+## Setting a key ## {#shrdkeyset}
 
 ```php
 <?php
 $client->session($key, $value);
 ```
 
-> ! For security reasons the server always overrides the session values on the client.
-
-## Getting the value of a shared session key ##
+## Getting the value of a key ##  {#shrdkeyget}
 
 ```php
 <?php
 $value = $client->session($key);
 ```
 
-## Testing if a shared session key exists ##
+## Testing if a key exists ##  {#shrdkeytest}
 
 ```php
 <?php
 $ok = $client->sessionHasKey($key);
 ```
 
-## Removing a shared session key ##
+## Removing a key ## {#shrdkeyrm}
 
 ```php
 <?php
 $client->sessionRemove($key);
 ```
 
-## Publish a message or event ##
+## Publish a message or event ## {#pubmsg}
 
 Similar to controllers on the backend, you can publish a message to your javascript controllers.
 
@@ -65,7 +72,7 @@ Similar to controllers on the backend, you can publish a message to your javascr
 $client->publish("displayRecord", ["id"=>20]);
 ```
 
-## Adding a javascript file ##
+## Adding a javascript file ## {#addjsfile}
 
 ```php
 <?php
@@ -73,7 +80,7 @@ $client->addJSFile($aPath);
 $client->addJSFile('asset://js/myfile.js'); //may use exc's special url protocols
 ```
 
-## Adding a css file ##
+## Adding a css file ## {#addcssfile}
 
 ```php
 <?php
@@ -81,7 +88,7 @@ $client->addCSSFile($aPath);
 $client->addCSSFile('asset://css/mystyle.css'); //may use exc's special url protocols
 ```
 
-## Adding a javascript controller file ##
+## Adding a javascript controller file ## {#addjscontroller}
 
 ```php
 <?php
@@ -89,7 +96,7 @@ $client->addController($objectName, $aPath);
 $client->addController('recordController', 'asset://js/controller.record.js'); //may use exc's special url protocols
 ```
 
-## Set application data ##
+## Set application data ## {#appdataset}
 
 ```php
 <?php
@@ -99,7 +106,7 @@ $client->setData("record", $aValue);
 
 > Data is available in your front-end using the property `app.data`, for example `app.data.record.name`.
 
-## Set the response for a request ##
+## Respond to a request ## {#apprespset}
 
 When the front-end sends a request that expects data back we use `$client->sendResponseData($data)` to send the data. Lets see a very simple example:
 
@@ -127,7 +134,7 @@ In our front-end we invoke our service using a backend action.
 	});
 ```
 
-## Run javascript code ##
+## Run javascript code ## {#runjs}
 
 ```php
 <?php
@@ -135,7 +142,7 @@ $jsCode = 'alert("Hello Jose");';
 $client->runCode($jsCode);
 ```
 
-## Run javascript when the application is ready ##
+## Run javascript when the application is ready ## {#runwhenready}
 
 ```php
 <?php

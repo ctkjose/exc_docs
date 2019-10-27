@@ -30,12 +30,12 @@ To learn more about creating a view see the [view documentation](./doc_server_vi
 
 The landing page of your app is contained in your **default view**. This is the web page that is serve as the main application. It has the logic to do things like show a login, register a user, show your initial content, etc.
 
-You load a view using the method `\exc\view::load()` and then you tell the app to use that view as the **default view** with `$app->makeViewDefault()`.
+You load a view using the method `\exc\view::load()` and then you tell the app to use that view as the **default view** with `$app->setDefaultView()`.
 
 ```PHP
 <?php
 $view = \exc\view::load("default");
-$app->makeViewDefault($view);
+$app->setDefaultView($view);
 ```
 
 > **NOTE:** When calling `\exc\view::load()` you can omit the `$name` argument if your default view is named `"view.default.php"` or `"view.default.html"`.
@@ -44,7 +44,7 @@ Since `$app->makeViewDefault()` also lets you specify a view by its name, you ca
 
 ```PHP
 <?php
-$app->makeViewDefault("default");
+$app->setDefaultView("default");
 ```
 
 Once a default view is set you can obtain an instance of your the default view with:
@@ -94,7 +94,7 @@ You add an [event](./doc_server_events.md) handler for `AppStart` in your [appli
 class appController extends \exc\controller\appController {
 
 	public function onAppStart(){
-		$view = $this->makeViewDefault("default"); //add our default view
+		$view = $this->setDefaultView("default"); //add our default view
 
 		//modify the title...
 		$view->title->set("Welcome");

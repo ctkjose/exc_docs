@@ -1,5 +1,5 @@
-
-**EXC** | DEV | [Documentation](./doc_index.md) | Version 1.0<BR>
+[Frontend](./fte_index.md) {menu}
+**EXC** | DEV | [Documentation](./doc_index.md)<BR>
 
 # HTTP #
 *This topic applies to the Front-End framework.*
@@ -9,7 +9,7 @@ Use the HTTP object to make a request using http/https, like calling an API or l
 Dependencies: CORE.<br>
 
 
-## Making a basic GET or POST request ##
+## Making a basic GET or POST request ## {#makerequest}
 
 Use the functions `http.get()` and `http.post()` to initiate a HTTP request.
 
@@ -65,7 +65,12 @@ The following options are available.
 | mimeType | Overrides the MIME type returned by the server. |
 | withCredentials | A Boolean that indicates whether or not cross-site Access-Control requests should be made using credentials such as cookies, authorization headers or TLS client certificates. Setting withCredentials has no effect on same-site requests. (Source MDN) |
 
-## Handling the response ##
+## Handling the response ## {#handleresp}
+
+The HTTP request provides three ways to handle a response, using events, using a promise interface or by a more traditional callback.
+
+## Using events ## {#useevents}
+
 
 ```js
 	var request = http.post(url, data);
@@ -90,17 +95,23 @@ The event `done` is triggered from a successful request. The handler receives a 
 
 The event `error` is triggered for errors and also receives a `response` object. To check which error occurred we use the `response.lastError` property.
 
-Properties of a response object:
+## Using a promise ## {#usepromise}
 
-| Property | Description |
-| -- | -- |
-| data | The actual payload. It may be `undefined`, an empty `string`, a `string`, an `object`, or an `array`. |
-| type | A string indicating the type of payload received. A `"json"` type means that your data is an `object` or `array`. A `"blob"` type means you got text or binary data specific to your request. A type of `"js"` means that the payload is actual javascript code. |
-| status | An integer with the HTTP response status. |
-| url |  A string of the final URL obtained after any redirects. |
-| lastError | An integer with an error code. Its value is zero for no errors. |
+In addition of using events the HTTP request provides a [PROMISE](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/promise) interface with a `then()` and `catch()` method.
 
-## Using the callback ##
+```js
+var params = {
+	name: "Jose",
+	code: 201,
+};
+
+var url = "http://localhost/echo.php";
+http.get(url, params).then(function(response){
+	console.log(response);
+});
+```
+
+## Using a callback ## {#usecallback}
 
 When you specify a callback function in your `http.get()` or `http.post()` the callback will be executed when the request is completed. This callback is called regardless if the request was successful or had an error.
 
@@ -122,7 +133,21 @@ Just like events the callback receives a `response` object as argument.
 
 In your callback you can check the property `response.lastError`.
 
-## JSON Payloads ##
+
+## Response Object ## {#response}
+
+
+Properties of a response object:
+
+| Property | Description |
+| -- | -- |
+| data | The actual payload. It may be `undefined`, an empty `string`, a `string`, an `object`, or an `array`. |
+| type | A string indicating the type of payload received. A `"json"` type means that your data is an `object` or `array`. A `"blob"` type means you got text or binary data specific to your request. A type of `"js"` means that the payload is actual javascript code. |
+| status | An integer with the HTTP response status. |
+| url |  A string of the final URL obtained after any redirects. |
+| lastError | An integer with an error code. Its value is zero for no errors. |
+
+## JSON Payloads ## {#jsonpayload}
 
 A request may send JSON encoded data in the body of a response with the `content-type` of `text/json` or `application/json`.
 
@@ -138,7 +163,7 @@ exit;
 ?>
 ```
 
-## JavaScript Payloads ##
+## JavaScript Payloads ## {#jspayload}
 
 A response may contain plain javascript code to be executed by sending the `content-type`  `application/javascript` in this case the `response.type` is set to `js`.
 
@@ -153,12 +178,12 @@ If the option `opRunJS` is false, then `response.data` has the actual javascript
 
 Javascript syntax errors will cause the request to fail.
 
-## Receiving arbitrary data ##
+## Receiving arbitrary data ## {#arbitrarydata}
 
 Arbitrary data have a `content-type` set to a value other than the ones expected above. The `response.type` is set to `blob` and the actual string data is in `response.data`.
 
 
-## JSON Stream ##
+## JSON Stream ## {#jsonstream}
 
 A JSON Steam allows an API to send a large set or continuous JSON data over a single request.
 
@@ -184,7 +209,7 @@ The `entries` argument of the event handler is an array of the JSON objects rece
 
 **NOTE:** The `"done"` event will be executed when the streaming stops. The `response.data` property will be an empty object for a JSON Stream.
 
-## Canceling a request ##
+## Canceling a request ## {#cancel}
 
 Use the function `request.abort()` to cancel a request. An "error" event will be triggered with the `response.lastError` set to `503`.
 

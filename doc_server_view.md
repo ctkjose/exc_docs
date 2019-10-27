@@ -13,7 +13,7 @@ A **view** is a php file named `view.myname.php`, where `myname` is the actual n
 
 You place your view files in a folder named `views` in your app folder. This is where EXC would look for them by default.
 
-### Creating a view ###
+### Creating a view ### {#createview}
 
 A view file contains the actual HTML code, it is our template, like for example:
 
@@ -33,7 +33,7 @@ You can add value placeholders that you replace from PHP. For example a placehol
 
 In the example above we have the placeholders `{{username}}`, `{{contents}}` and `{{title}}`.
 
-## Using placeholders ##
+## Using placeholders ## {#placeholders}
 
 In PHP we set the value of a placeholder with the `set($html)` method:
 
@@ -50,7 +50,7 @@ $view->contents->write($someHTML);
 $view->contents->write($moreHTML);
 ```
 
-### Beyond placeholders ###
+### Beyond placeholders ### {#bplaceholders}
 
 You can set values that can be used as placeholders in all your views using a **@CONSTANT**.
 
@@ -76,15 +76,16 @@ Special framework values are available as @CONTANTS in your view file.
 | @BASE | Path of your app. |
 | @CONTROLLER_DIRECTORY | Path to the folder with current controller. |
 
-## Using directives ##
+## Using directives ## {#usingdirec}
 
 Directives are another type of placeholders that make your view more flexible.
 
+### view directive ## {#dirview}
 Use the **#view** directive to include the contents of another view:
 ```HTML
 {{#view record_header}}
 ```
-
+### file directive ## {#dirfile}
 Use the **#file** directive to include a file:
 ```html
 {{#file /absolute/path/file.js}}
@@ -97,12 +98,22 @@ Similar to the file **#file** directive you have the short hands **#script** and
 ```HTML
 {{#script asset://js/myscript.js}}
 ```
+### if directive ## {#dirif}
 The **#if** directive will include its contents when the value of a variable evaluates to true.
 ```HTML
 {{#if ind_new_account}}
 	<b>Welcome to EXC...</b>
 {{end if ind_new_account}}
 ```
+### inherits directive ## {#dirinherits}
+Use the **#inherits** directive to make a view that is based on another template. This is useful to avoid duplicating content. An inherits directive should be the first line of your view template. Lets see an example:
+
+```HTML
+{{#inherits default {{body}} }}
+```
+The first argument of this directive is the name of a view file that will be used as template. In this example is `default` for the file `view.default.php`.
+
+The second argument is a placeholder in that view file where the current view will be injected. In this example the contents of our view are displayed inside the placeholder `{{body}}`.
 
 
 ### Placing views in other locations ###
@@ -125,75 +136,3 @@ $options['views.paths'] = [
 	'/Library/WebServer/Documents/examples/shared/views/',
 ];
 ```
-
-# Class exc\view #
-
-### Class Methods ###
-
-```
-public static function load($name='default')
-```
-
-Factory method to create an instance of `view` by name.
-
-```
-public static function createWithFile($path, $name='default')
-```
-
-Factory method to create an instance of `view` from a file.
-
-```
-public static function createWithSource($source, $name='default')
-```
-Factory method to create an instance of `view` from a $source string containing HTML.
-
-```
-public static function getViewPathForName($name)
-```
-
-Returns a string with the absolute path for a view file given its name. Returns
-
-```
-public static function constantSetValue($key, $value)
-public static function constantSetValue($key1, $value1, $key2, $value2...)
-public static function constantSetValue($anArrayOfValuePairs)
-```
-Sets the value of a **@CONTANT** placeholder.
-
-```
-public static function constantCopyValues($anArrayOfValuePairs, $prefix='')
-```
-Creates a **@CONTANT** placeholder for each key in an array of value-pairs.
-
-
-### Object Methods ###
-
-```
-$viewInstance->placeholderName->set($html)
-```
-Call the `set($HTML)` method on a placeholder to sets its contents.
-
-```
-$viewInstance->placeholderName->write($html)
-```
-
-Call the `write($HTML)` method on a placeholder to append to its contents.
-
-```
-$viewInstance->js->src($urlToJS)
-$viewInstance->css->src($urlToCSS)
-$viewInstance->css->src($urlToCSS, $mediaType)
-```
-
-Call the helper method `src()` on the `js` or `css` placeholders to create a script or style tag.
-
-
-```
-$viewInstance->getHTML()
-```
-Renders the view and returns the compiled HTML code.
-
-```
-$viewInstance->initializeSource($srcHTML)
-```
-Initialize a view with its HTML source.
