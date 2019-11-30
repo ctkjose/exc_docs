@@ -1,10 +1,10 @@
-[Core Classes]() {:menu}
-[app](./bke_ref_app.md) {:menu}
-[appController](./bke_ref_appcontroller.md) {:menu}
-[view](./bke_ref_view.md) {:menu}
-[controller](./bke_ref_controller.md) {:menu}
+[Core Classes]() {menu:topics}
+[app](./bke_ref_app.md) {menu:topics}
+[appController](./bke_ref_appcontroller.md) {menu:topics}
+[view](./bke_ref_view.md) {menu:topics}
+[controller](./bke_ref_controller.md) {menu:topics}
 
-**EXC** | DEV | [Documentation](./doc_index.md) | Version 1.0<BR>
+**EXC** | DEV | [Documentation](./doc_index.md) <BR>
 
 # Class controller #
 

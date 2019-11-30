@@ -1,7 +1,7 @@
-[Related](){:menu}
-[Interacting with the backend](./fte_ref_backend.md){:menu}
-[Interacting with the frontend](./doc_server_client.md){:menu}
-[HTTP Requests](./doc_score_ajax.md){:menu}
+[Related](){menu:}
+[Interacting with the backend](./fte_ref_backend.md){menu:}
+[Interacting with the frontend](./doc_server_client.md){menu:}
+[HTTP Requests](./doc_score_ajax.md){menu:}
 **EXC** | DEV | [Documentation](./doc_index.md)<BR>
 
 

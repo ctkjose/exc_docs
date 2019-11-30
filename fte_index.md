@@ -11,6 +11,7 @@ The frontend framework is the set of javascript libraries used to create apps wi
 
 {: .md-topics-hero }
 - Core
+- [Chain](./fte_ref_chain.md)<br> A helper function to make it easier to create sequential code flow for callbacks and asynchronous logic.
 - [Promise](./fte_ref_core_promise.md)<br> A utility object to simplify the use of asynchronous code. It is similar to a native promise but adds some useful behaviors to make it more enjoyable!
 - [Callbacks](./fte_ref_callbacks.md)<BR> Using callbacks in EXC with some helper functions and extra functionality.
 - [HTTP and AJAX](./doc_core_ajax.md)<BR> Making HTTP requests and using ajax.

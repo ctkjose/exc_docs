@@ -1,20 +1,28 @@
-[Frontend](./fte_index.md) {menu}
-[Related]() {:menu}
-[Controller's Manifest](./doc_client_controller_manifest.md){:menu}
-[Interacting with the front-end](./doc_server_client.md){:menu}
-**EXC** | DEV | [Documentation](./doc_index.md) | Version 1.0<BR>
+[Frontend](./fte_index.md) {menu:}
+[Related]() {menu:}
+[Controller's Manifest](./doc_client_controller_manifest.md){menu:}
+[Interacting with the front-end](./doc_server_client.md){menu:}
+**EXC** | DEV | [Documentation](./doc_index.md)<BR>
 
 # Controller # {#ctldesc}
 
 A **controller** is an object responsible of handling requests or events. In EXC we use controllers to implement the logic of our application.
 
-A controller is a plain javascript object that EXC decorates with new functionality to become a full fledge `controller`.
+A controller is a plain javascript object that EXC decorates with new functionality to become a full fledge controller. What makes it special is the functions that we place inside our controller object.
 
-What makes special a controller is the functions that we place inside our controller object.
+The execution of your application is in essence your code responding to events and messages. We respond to events by adding event handlers, which are nothing more than functions in a controller object.
 
-The execution of your application is in essence your code responding to events (also called messages). We respond to events by adding event handlers, which are nothing more than functions in a controller object.
+An event may be raised by actions, by DOM events, by your code, or by EXC itself. The great thing of controllers is that they make it super easy to decouple your application logic using events.
 
-In a controller an event handler is a function, who's name follows a simple naming convention (an event handler signature). A function name that starts with "on" , for example `onAppStart` is considered a handler for the event `"AppStart"`.
+Similar to event handlers a controller can receive **messages**. The basic difference is that while in an **event** your controller is reacting, in a **message** your controller is told to perform something. You can think of message as just a way to invoking a function on your controller.
+
+Once again a message handler is nothing more than a function with a name that matches the message name. EXC provides some easy ways to invoke messages and attach them to DOM events.
+
+## Adding event handlers ## {#ctlevents}
+
+An event handler is a function, who's name follows a simple naming convention (an event handler signature).
+
+A function name that starts with "on" , for example `onAppStart` is considered a handler for the event `"AppStart"`.
 
 ```js
 myController = {
@@ -27,9 +35,10 @@ myController = {
 	}
 };
 ```
-An event may be raised by actions, by DOM events, by your code, or by EXC itself. The great thing of controllers is that they make it super easy to decouple your application logic using events in a publish/subscribe fashion.
+The event `"AppStart"` does not have parameters but other events may have parameters.
 
-In addition to event handlers a controller can receive **messages**. You can think of message as just a way to invoking a function on your controller. A message handler is nothing more than a function with a name that matches the message name. EXC provides some easy ways to invoke messages and attach them to DOM events.
+To learn more about events published by EXC read the [Core Events](./fte_ref_core_events.md) guide.
+
 
 # App Controller # {#appctl}
 
@@ -67,7 +76,9 @@ A controller may implement an **initialize** function. The `initialize` method i
 
 The app controller gets a lot of special events from EXC, most events are optional and you add event handlers for the ones that you need.
 
-The **AppStart** event is a required event and it is called to ensure that EXC can RUN your app. This handler must return `true` to let the application run.
+The **AppStart** event is a required event and it is called to ensure that EXC can RUN your app. The AppStart is a good place to check the state of your app and initialize things. This handler must return `true` to let the application run.
+
+
 
 With these two our app controller knows looks like this:
 
@@ -87,7 +98,7 @@ app = {
 
 As a Javascript application grows in complexity managing the information is difficult, mostly because state and information is scattered across many components and pieces.
 
-In EXC the **app controller** is a global object that is available to all the different elements of your application and can conveniently help you coordinate the different aspects of your application logic and move data around.
+In EXC the **app controller** is a global object that is available to all the different elements of your application and can help you coordinate the different aspects of your application logic and move data around.
 
 Your app controller is available in the global scope using the variable `app` or `self.app` or `window.app`.
 

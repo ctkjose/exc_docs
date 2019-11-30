@@ -1,7 +1,7 @@
-[Related](){:menu}
-[Back-end Framework](./bke_index.md){:menu}
-[Session and data persistence](./doc_session.md){:menu}
-[Request](./bke_ref_request.md){:menu}
+[Related](){menu:}
+[Back-end Framework](./bke_index.md){menu:}
+[Session and data persistence](./doc_session.md){menu:}
+[Request](./bke_ref_request.md){menu:}
 **EXC** | DEV | [Documentation](./doc_index.md)<BR>
 
 

@@ -1,7 +1,7 @@
-[Related](){:menu}
-[Back-end Framework](./bke_index.md){:menu}
-[Client Interactions](./doc_server_client.md){:menu}
-[Session and data persistence](./doc_session.md){:menu}
+[Related](){menu:}
+[Back-end Framework](./bke_index.md){menu:}
+[Client Interactions](./doc_server_client.md){menu:}
+[Session and data persistence](./doc_session.md){menu:}
 **EXC** | DEV | [Documentation](./doc_index.md)<BR>
 
 # Request # {#request}

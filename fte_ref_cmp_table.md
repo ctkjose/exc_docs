@@ -1,8 +1,8 @@
-[Related]() {:menu}
-[Components](./fte_ref_components.md) {:menu}
-[Documentation](./doc_index.md) {:menu}
-[Front End]() {:menu}
-[Documentation](./doc_index.md) {:menu}
+[Related]() {menu:}
+[Components](./fte_ref_components.md) {menu:}
+[Documentation](./doc_index.md) {menu:}
+[Front End]() {menu:}
+[Documentation](./doc_index.md) {menu:}
 
 
 **EXC** | DEV | [Documentation](./doc_index.md) | Version 1.0<BR>
