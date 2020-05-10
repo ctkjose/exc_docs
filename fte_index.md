@@ -14,8 +14,15 @@ The frontend framework is the set of javascript libraries used to create apps wi
 - [Chain](./fte_ref_chain.md)<br> A helper function to make it easier to create sequential code flow for callbacks and asynchronous logic.
 - [Promise](./fte_ref_core_promise.md)<br> A utility object to simplify the use of asynchronous code. It is similar to a native promise but adds some useful behaviors to make it more enjoyable!
 - [Callbacks](./fte_ref_callbacks.md)<BR> Using callbacks in EXC with some helper functions and extra functionality.
-- [HTTP and AJAX](./doc_core_ajax.md)<BR> Making HTTP requests and using ajax.
-- [Value Observers, Data Source and JSON API](./doc_datasource.md)<BR>
+- [HTTP and AJAX](./fte_ref_http.md)<BR> Making HTTP requests.
+- [Observers, Data Source and JSON API](./fte_ref_ds.md)<BR>
+
+{: .md-topics-hero }
+- Traits
+- [Emitter](./fte_ref_trait_publisher.md)<BR> Use the Emitter to add publisher/subscriber functionality to an object.
+- [Controller](./fte_ref_trait_controller.md)<BR> Adds controller functionality to an object.
+- [Thenable](./fte_ref_trait_thenabble.md)<BR> Use Thenable to add promise like "then" functionality to an object.
+
 
 {: .md-topics-hero }
 - App

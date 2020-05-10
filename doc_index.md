@@ -18,7 +18,7 @@ To reduce the security and operational complexity of deploying an application.
 
 To leverage robust architectures and environments. To be able to deploy your app with common hosting companies (even vhosts), and use technologies like apache, and nginx, that are well documented, easy to scale and extremely cost-effective.    
 
-> : This documentation is in its early stages. Things are thrown together in a haphazard way, Sorry!.
+> : This documentation is in its early stages. It may refer old code!.
 
 ## Topics ##
 
