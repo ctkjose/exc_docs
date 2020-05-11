@@ -7,7 +7,7 @@ Across the documentation you will see the use of callbacks.
 
 When a callback is accepted you can use a traditional `function` or a `closure`.
 
-EXC also allows one more special syntax for callbacks that reference an object similar to the syntax of PHP's [call_user_func_array](https://php.net/manual/en/function.call-user-func-array.php). The array is a simple array with two elements. The first element is the object and the second element is a function or a string with the name of a function.
+In we can use an array to reference a callback from object. This is similar to the syntax of PHP's [call_user_func_array](https://php.net/manual/en/function.call-user-func-array.php). The array is a simple array with two elements. The first element is the object and the second element is a function or a string with the name of a function.
 
 ```js
 var callback = [MyObject, "doThis"];

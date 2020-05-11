@@ -177,16 +177,16 @@ exit;
 
 A response may contain plain javascript code to be executed by sending the `content-type`  `application/javascript` in this case the `response.type` is set to `js`.
 
-The code is executed automatically by default. Set the option `opRunJS` to disable automatic execution.
+The code is executed automatically by default. To disable automatic execution set the option `opRunJS` to false.
 
-The code executed exposed the plain object `ajaxResponse` which can be used to pass data back to the promise in the `response.data` property. For example:
+The code executed will have access to the plain object `ajaxResponse`. This object can be used to pass data back to the promise in the `response.data` property. For example:
 ```js
 	ajaxResponse.empName = "Jose";
 ```
 
 If the option `opRunJS` is false, then `response.data` has the actual javascript code.
 
-Javascript syntax errors will cause the request to fail.
+> ! Javascript syntax errors will cause the request to fail.
 
 ## Receiving arbitrary data ## {#arbitrarydata}
 

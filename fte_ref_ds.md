@@ -37,14 +37,14 @@ observable.observeKey("name", myObserver);
 observable.name = "Joe";
 ```
 
-Since the observable is an event emitter using the [publisher](./fte_ref_trait_publisher.md) trait we can take advantage of its features.
+Since the observable is an event emitter using the [emitter](./fte_ref_trait_publisher.md) trait we can take advantage of its features.
 
-When calling `observeKey()` a `subscription` is returned. Use the `subscription.unsubscribe()` to stop observing a key change.
+When calling `observeKey()` a `subscription` is returned. Use the `subscription.dispose()` to stop observing a key change.
 
 ```js
 
 var subscription = observable.observeKey("name", myObserver);
-subscription.unsubscribe();
+subscription.dispose();
 ```
 
 An observable also emits the event `"change"` to indicate that some key in the object changed.
@@ -116,6 +116,7 @@ The `create(options)` method expects a plain object in the parameter `options`. 
 | processData | Optional function that will be called to process data received. This function must return an array or object. | function(data) |
 
 To indicate the source of a datasource we use the property `type` in our `options` object. In the previous example we use the source type `"rest"`.
+
 As the name implies the source **rest** is a basic source of data used to fetch data using a REST request. This source uses for its data the **JSON** returned by the request ( either as one plain object or an array of plain objects) (*for more details see **JSON API** in this document*).
 
 A source of type `"rest"` uses the `url` option and the `method` option. The `method` may be set to `get`, `post` or another valid HTTP method.

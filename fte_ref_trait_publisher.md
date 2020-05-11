@@ -222,3 +222,34 @@ The function `publisher.sticky.emit()` is the same as a regular `emit()` and tak
 | ... | Additional parameters passed to the event as arguments |
 
 Returns `disposable` object.
+
+
+## Pausing an emitter ## {#eventpause}
+
+You can pause the delivery of events by calling `emitterTogglePause()`. When you pause the emitter all events triggered with `emit()` will be posponed until the pause is removed by calling `emitterTogglePause()` a second time. Once the pause is removed the emitter will deliver the events.
+
+
+# Other emitter methods #
+
+## Function subscribeHandlers() ##
+
+Automatically subscribes methods in an object based on their name.
+
+`emitter.subscribeHandlers(object)`
+
+| Parameter | Description |
+| -- | -- |
+| **object** | The object with methods to subscribe. |
+
+Methods that start with "on" are considered event handlers. For example a method named "onDoThis" is an event handler for the event "DoThis".
+
+After calling this function the object will have a `dispose()` function which can be called to remove the subscriptions.
+
+
+## Function dispose() ##
+
+This is a teardown method that releases the emitter data.
+
+`emitter.dispose()`
+
+The dispose functions is added in top of any existing one.
